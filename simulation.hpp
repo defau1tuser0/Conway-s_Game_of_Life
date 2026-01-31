@@ -4,12 +4,16 @@
 class Simulation {
     private:
         Grid grid;
+        Grid temp_grid;
+
     public:
         Simulation(int width, int height, int cell_size):
-            grid(width, height, cell_size) {};
-        
+            //temp_grip for storing grid value that will be assigned to grid after all the grid cells have been checked
+            grid(width, height, cell_size), temp_grid(width, height, cell_size) {}; 
+
         void Draw();
         void SetCellValue(int row, int column, int value);
         int CountAliveNeighbour(int row, int column);
+        void update(); //checks the cells and their neighbours and updates the grid
 
 };

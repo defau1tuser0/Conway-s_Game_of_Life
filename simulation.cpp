@@ -24,7 +24,7 @@ int Simulation::CountAliveNeighbour(int row, int column) {
         {1, 1}     //right down
     };
 
-    for (const auto& offset: neighbour_offsets) {
+    for(const auto& offset: neighbour_offsets) {
         // TOROIDAL GRID: the neighbour of last cell is first cell and vice versa
         // new_cell = (row + offset + total_rows) % total_rows == remainder which implements TOROIDAL GRID
         int neighbour_row = (row + offset.first + grid.GetRows()) % grid.GetRows(); 
@@ -34,4 +34,32 @@ int Simulation::CountAliveNeighbour(int row, int column) {
     }
 
     return alive_neighbour;
+}
+
+void Simulation::update() {
+    for(int row=0; row<grid.GetRows(); row++) {
+        for(int column=0; column<grid.GetColumns(); column++) {
+            int alive_neighbours = CountAliveNeighbour(row, column);
+            int cell_value = grid.GetValue(row, column);
+
+            if(cell_value==1) {
+                if(alive_neighbours>3 || alive_neighbours<2) {
+                    temp_grid.SetValue(row, column, 0);  //dies because of either overpopulation or loneliness
+                }
+                else {
+                    temp_grid.SetValue(row, column, 1); //if has only 2-3 alive neighbours it stays alive peacefully
+                }
+            }
+            else {
+                if(alive_neighbours == 3) {
+                    temp_grid.SetValue(row, column, 1); //if has 3 alive neighbours it comes to life *MAGIC
+                }
+                else {
+                    temp_grid.SetValue(row, column, 0); //stays dead
+                }
+            }
+            
+        }
+    }
+    grid = temp_grid;
 }
