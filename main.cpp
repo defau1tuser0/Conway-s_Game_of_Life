@@ -1,5 +1,5 @@
 #include <raylib.h>
-#include "grid.hpp"
+#include "simulation.hpp"
 
 int main() {
     const int WINDOW_WIDTH = 900;
@@ -11,9 +11,7 @@ int main() {
     
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
-    Grid grid{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE};
-    grid.SetValue(0, 0, 1); //testing alive cell
-    grid.SetValue(25, 16, 1);
+    Simulation simulation{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE}; //Drawing of grid
 
     //Simulation Loop
     while(WindowShouldClose() == false) {
@@ -24,7 +22,7 @@ int main() {
         // 3. Drawing 
         BeginDrawing();
         ClearBackground(GRAY);
-        grid.Draw();
+        simulation.Draw();
         EndDrawing();
     };
 
