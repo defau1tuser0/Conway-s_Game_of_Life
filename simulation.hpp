@@ -10,5 +10,6 @@ class Simulation {
         
         void Draw();
         void SetCellValue(int row, int column, int value);
+        int CountAliveNeighbour(int row, int column);
 
 };

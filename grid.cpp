@@ -16,8 +16,22 @@ void Grid::Draw() {
     }
 }
 
-void Grid::SetValue(int row, int column, int value) {
+bool Grid::IsWithinBounds(int row, int column) {
     if (row>=0 && row<rows && column>=0 && column<columns) {
+        return true;
+    }
+    return false;
+}
+
+void Grid::SetValue(int row, int column, int value) {
+    if (IsWithinBounds(row, column)) {
         cells[row][column] = value;
     }
+}
+
+int Grid::GetValue(int row, int column) {
+    if (IsWithinBounds(row, column)) {
+        return cells[row][column];
+    }
+    return 0;
 }
