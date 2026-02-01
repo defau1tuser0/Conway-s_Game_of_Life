@@ -37,29 +37,31 @@ int Simulation::CountAliveNeighbour(int row, int column) {
 }
 
 void Simulation::Update() {
-    for(int row=0; row<grid.GetRows(); row++) {
-        for(int column=0; column<grid.GetColumns(); column++) {
-            int alive_neighbours = CountAliveNeighbour(row, column);
-            int cell_value = grid.GetValue(row, column);
+    if (IsRunning()) {
+        for(int row=0; row<grid.GetRows(); row++) {
+            for(int column=0; column<grid.GetColumns(); column++) {
+                int alive_neighbours = CountAliveNeighbour(row, column);
+                int cell_value = grid.GetValue(row, column);
 
-            if(cell_value==1) {
-                if(alive_neighbours>3 || alive_neighbours<2) {
-                    temp_grid.SetValue(row, column, 0);  //dies because of either overpopulation or loneliness
+                if(cell_value==1) {
+                    if(alive_neighbours>3 || alive_neighbours<2) {
+                        temp_grid.SetValue(row, column, 0);  //dies because of either overpopulation or loneliness
+                    }
+                    else {
+                        temp_grid.SetValue(row, column, 1); //if has only 2-3 alive neighbours it stays alive peacefully
+                    }
                 }
                 else {
-                    temp_grid.SetValue(row, column, 1); //if has only 2-3 alive neighbours it stays alive peacefully
+                    if(alive_neighbours == 3) {
+                        temp_grid.SetValue(row, column, 1); //if has 3 alive neighbours it comes to life *MAGIC
+                    }
+                    else {
+                        temp_grid.SetValue(row, column, 0); //stays dead
+                    }
                 }
+                
             }
-            else {
-                if(alive_neighbours == 3) {
-                    temp_grid.SetValue(row, column, 1); //if has 3 alive neighbours it comes to life *MAGIC
-                }
-                else {
-                    temp_grid.SetValue(row, column, 0); //stays dead
-                }
-            }
-            
         }
+        grid = temp_grid;
     }
-    grid = temp_grid;
 }
