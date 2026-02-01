@@ -36,7 +36,7 @@ int Simulation::CountAliveNeighbour(int row, int column) {
     return alive_neighbour;
 }
 
-void Simulation::update() {
+void Simulation::Update() {
     for(int row=0; row<grid.GetRows(); row++) {
         for(int column=0; column<grid.GetColumns(); column++) {
             int alive_neighbours = CountAliveNeighbour(row, column);

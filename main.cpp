@@ -8,7 +8,7 @@ int main() {
     const int CELL_SIZE = 30;
     const int FPS = 12;
 
-    Color GREY = {29, 29, 29, 255};
+    //Color GREY = {29, 29, 29, 255};
     
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
@@ -19,10 +19,11 @@ int main() {
         // 1. Event handling
 
         // 2. Updating state
+        simulation.Update();
 
         // 3. Drawing 
         BeginDrawing();
-        ClearBackground(GRAY);
+        ClearBackground(BLACK);
         simulation.Draw();
         EndDrawing();
     };

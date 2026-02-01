@@ -21,4 +21,5 @@ class Grid {
         int GetValue(int row, int column);
         int GetRows() {return rows;}
         int GetColumns() {return columns;}
+        void Noise(); //random noise/value
 };
