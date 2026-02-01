@@ -10,7 +10,7 @@ class Simulation {
     public:
         Simulation(int width, int height, int cell_size):
             //temp_grip for storing grid value that will be assigned to grid after all the grid cells have been checked
-            grid(width, height, cell_size), temp_grid(width, height, cell_size), run(false) {grid.Noise();}; 
+            grid(width, height, cell_size), temp_grid(width, height, cell_size), run(false) {}; 
 
         void Draw();
         void SetCellValue(int row, int column, int value);
@@ -19,4 +19,6 @@ class Simulation {
         bool IsRunning() {return run;}
         void Start() {run = true;}
         void Stop() {run = false;}
+        void ClearGrid();
+        void CreateRandomState();
 };

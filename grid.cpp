@@ -7,7 +7,7 @@ void Grid::Draw() {
     for(int row=0; row<rows; row++) {
         for(int column=0; column<columns; column++) {
             //if 1(true) then color it with green else gray
-            Color color = cells[row][column] ? Color{GREEN} : Color{BLACK};
+            Color color = cells[row][column] ? Color{GREEN} : Color{29, 29, 29, 255};
 
             //it takes for args: col, row, width, height and color. 
             //as we need our cells to be grid not just a single coordinate point, we mutiply the coordinate by cell_size
@@ -42,6 +42,14 @@ void Grid::Noise() {
         for(int column=0; column<columns; column++) {
             int random_value = GetRandomValue(0, 4);
             cells[row][column] = (random_value == 4) ? 1 : 0; //assign 1(cell being alive at the start) only if random_value is 4  
+        }
+    }
+}
+
+void Grid::Clear() {
+    for (int row=0; row<rows; row++) {
+        for (int column=0; column<columns; column++) {
+            cells[row][column] = 0;
         }
     }
 }

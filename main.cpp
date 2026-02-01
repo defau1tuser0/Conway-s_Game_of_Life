@@ -7,8 +7,6 @@ int main() {
     const int WINDOW_HEIGHT = 900;
     const int CELL_SIZE = 30;
     int FPS = 12;
-    float key_hold_timer = 0.0f;
-    const float DELAY = 0.3f;
 
     //Color GREY = {29, 29, 29, 255};
     
@@ -37,6 +35,13 @@ int main() {
                 SetTargetFPS(FPS);
             }
         }
+        else if (IsKeyPressed(KEY_R)) {
+            simulation.CreateRandomState();
+        }
+        else if (IsKeyPressed(KEY_C)) {
+            simulation.ClearGrid();
+        }
+        
 
         // 2. Updating state
         simulation.Update();
