@@ -3,9 +3,9 @@
 #include "simulation.hpp"
 
 int main() {
-    const int WINDOW_WIDTH = 900;
-    const int WINDOW_HEIGHT = 900;
-    const int CELL_SIZE = 30;
+    const int WINDOW_WIDTH = 1200;
+    const int WINDOW_HEIGHT = 800;
+    const int CELL_SIZE = 20;
     int FPS = 12;
 
     //Color GREY = {29, 29, 29, 255};
@@ -17,6 +17,12 @@ int main() {
     //Simulation Loop
     while(WindowShouldClose() == false) {
         // 1. Event handling
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            Vector2 mousePosition = GetMousePosition(); //the the mouse cursor position
+            int row = mousePosition.y / CELL_SIZE;
+            int column = mousePosition.x / CELL_SIZE;
+            simulation.ToggleCell(row, column);
+        }
         if (IsKeyPressed(KEY_ENTER)) { //start
             simulation.Start();
             SetWindowTitle("Game of Life is running ...");

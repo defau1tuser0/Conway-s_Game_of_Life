@@ -15,12 +15,13 @@ class Grid {
             cell_size(cell_size), 
             cells(rows, std::vector<int>(columns, 0)) {}; //put 0 in every column for every row of cells which is 2d vector
         
-        void Draw();
+        void Draw(); //Display
         bool IsWithinBounds(int row, int column); //check if coordinates are correct
-        void SetValue(int row, int column, int value);
-        int GetValue(int row, int column);
+        void SetValue(int row, int column, int value); //make the cell(grid) of the provided coordinates dead or alive(0 or 1)
+        int GetValue(int row, int column); //retreat value(state of cell being Alive or Dead)
         int GetRows() {return rows;}
         int GetColumns() {return columns;}
         void Noise(); //random noise/value
-        void Clear();
+        void Clear(); //clear screen
+        void TogleCell(int row, int column); //make Dead cell Alive and vice versa
 };

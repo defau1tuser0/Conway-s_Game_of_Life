@@ -53,3 +53,9 @@ void Grid::Clear() {
         }
     }
 }
+
+void Grid::TogleCell(int row, int column) {
+    if (IsWithinBounds(row, column)) {
+        cells[row][column] = !cells[row][column]; //inverse it's current state
+    }
+}
