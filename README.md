@@ -2,7 +2,14 @@
 
 Simple simulation of Conway's game of life in c++ with raylib.
 
-## Controls:
+### Compile:
+```
+g++ main.cpp simulation.cpp grid.cpp -o game.exe  -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
+```
+after compilation, run the game.exe either by running: ```.\game.exe``` or from file explorer.
+
+
+### Controls:
 0. Note that at start every cell in simulation will be __DEAD__
 1. Click on the cell to make it Alive or Dead(only when simulation is not running)
 2. press __r__ key to set a random state(only when simulation is not running)
