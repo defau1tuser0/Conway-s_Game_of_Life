@@ -7,7 +7,7 @@ void Grid::Draw() {
     for(int row=0; row<rows; row++) {
         for(int column=0; column<columns; column++) {
             //if 1(true) then color it with green else gray
-            Color color = cells[row][column] ? Color{GREEN} : Color{29, 29, 29, 255};
+            Color color = cells[row][column] ? Color{GREEN} : Color{59, 59, 59, 255};
 
             //it takes for args: col, row, width, height and color. 
             //as we need our cells to be grid not just a single coordinate point, we mutiply the coordinate by cell_size
