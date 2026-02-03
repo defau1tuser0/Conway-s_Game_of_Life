@@ -5,7 +5,13 @@
 int main() {
     const int WINDOW_WIDTH = 1200;
     const int WINDOW_HEIGHT = 800;
-    const int CELL_SIZE = 20;
+    int CELL_SIZE;
+    std::cout << "Enter the size of cells: ";
+    std::cin >> CELL_SIZE;
+    int cell_count;
+    std::cout << "Cell Size: " << CELL_SIZE << std::endl;
+    std::cout << "Cell Count: " << int(WINDOW_HEIGHT * WINDOW_WIDTH) / CELL_SIZE << std::endl;
+
     int FPS = 12;
 
     //Color GREY = {29, 29, 29, 255};
