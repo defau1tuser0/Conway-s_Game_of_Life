@@ -38,10 +38,14 @@ int Grid::GetValue(int row, int column) {
 }
 
 void Grid::Noise() {
+    bool first_time = true;
+    int end_range;
+    std::cout << "Enter end range for RNG: ";
+    std::cin >> end_range;
     for(int row=0; row<rows; row++) {
         for(int column=0; column<columns; column++) {
-            int random_value = GetRandomValue(0, 4);
-            cells[row][column] = (random_value == 4) ? 1 : 0; //assign 1(cell being alive at the start) only if random_value is 4  
+            int random_value = GetRandomValue(0, end_range);
+            cells[row][column] = (random_value == end_range) ? 1 : 0; //assign 1(cell being alive at the start) only if random_value is 4  
         }
     }
 }
