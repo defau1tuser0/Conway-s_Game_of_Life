@@ -14,17 +14,23 @@ int main() {
     int new_window_width;
     int new_window_height;
     //if input is empyt(Enter key) set the value to default
-    if (window_width.empty() || window_height.empty()) {
+    //individually 
+    if (window_width.empty()) {
         new_window_width = 1200;
+    }
+    else {
+        new_window_width = std::stoi(window_width);
+    }
+
+    if (window_height.empty()) {
         new_window_height = 800;
     }
-    else { //else change the strong to int
-        new_window_width = std::stoi(window_width);
+    else {
         new_window_height = std::stoi(window_height);
     }
     
     
-    //minimum size should be 500
+    //minimum size should be 300
     const int WINDOW_WIDTH = (new_window_width<300)? 300 : new_window_width;
     const int WINDOW_HEIGHT = (new_window_height<300)? 300 : new_window_height;
     std::cout << "Window Width: " << WINDOW_WIDTH << std::endl;
@@ -39,9 +45,10 @@ int main() {
     std::cout << "Cell Count: " << int(WINDOW_HEIGHT * WINDOW_WIDTH) / CELL_SIZE << std::endl;
 
     int FPS = 12;
-
     //Color GREY = {29, 29, 29, 255};
     
+    //Resizable window
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
     Simulation simulation{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE}; //Drawing of grid
@@ -57,20 +64,30 @@ int main() {
         }
         if (IsKeyPressed(KEY_ENTER)) { //start
             simulation.Start();
-            SetWindowTitle("Game of Life is running ...");
+            std::string title = "Game of Life is running... FPS: " + std::to_string(FPS);
+            SetWindowTitle(title.c_str());
         }
         else if (IsKeyPressed(KEY_SPACE)) { //pause
             simulation.Stop();
-            SetWindowTitle("Game of Life PAUSED");
+            std::string title = "Game of Life PAUSED. FPS: " + std::to_string(FPS);
+            SetWindowTitle(title.c_str());
         }
         else if (IsKeyPressed(KEY_F)) { //speed up
             FPS += 2;
             SetTargetFPS(FPS);
+            if (simulation.IsRunning()) {
+                    std::string title = "Game of Life is running... FPS: " + std::to_string(FPS);
+                    SetWindowTitle(title.c_str());
+            }
         }
         else if (IsKeyPressed(KEY_S)) { //slow down but not less then 5fps
             if (FPS > 5) {
                 FPS -= 2;
                 SetTargetFPS(FPS);
+                if (simulation.IsRunning()) {
+                    std::string title = "Game of Life is running... FPS: " + std::to_string(FPS);
+                    SetWindowTitle(title.c_str());
+                }
             }
         }
         else if (IsKeyPressed(KEY_R)) {
