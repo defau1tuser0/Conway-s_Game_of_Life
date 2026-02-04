@@ -18,3 +18,9 @@ after compilation, run the game.exe either by running: ```.\game.exe``` or from 
 5. press __f__ to increase the speed of simulation
 6. press __s__ to slow down the speed of simulation
 7. press __c__ to clear the screen to 0.
+
+
+### Special Thanks to Raylib.
+Offical Raylib github link: https://github.com/raysan5/raylib  
+Official Raylib website link: https://www.raylib.com   
+__Thanks Once Again__ 
